@@ -5,14 +5,39 @@ import Trending from './Trending';
 
 
 
+
 class MainContainer extends Component {
-    state = {  }
+    state = { 
+        products:[]
+     }
+
+     componentDidMount(){
+        fetch("http://localhost:3000/products")
+        .then(res=> res.json())
+        .then(products=> {
+            // console.log(products)
+            this.setState({
+            products
+        })
+    })
+
+
+     }
     render() { 
-        return (<div>
-          <Categories />  
-          <Trending />
-         <Products />
-        </div> );
+        return (
+        <div>
+            <Categories />  
+            <Trending />
+            <div className= "ui four column grid">
+                <div className="row">
+                    {this.state.products.map(product=>
+                        <Products />
+                        )}
+                    
+                </div>
+            </div>
+        </div> 
+        );
     }
 }
  

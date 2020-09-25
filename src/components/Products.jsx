@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-class Products extends Component {
-    state = {  }
-    render() { 
+const Products = (props) => 
+{
         return ( <div>
+
             
         </div> );
-    }
+    
 }
  
 export default Products;
