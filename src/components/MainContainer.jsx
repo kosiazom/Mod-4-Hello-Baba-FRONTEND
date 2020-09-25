@@ -31,9 +31,9 @@ class MainContainer extends Component {
             <Container>
                 <Categories />  
                 <Trending />
-                <Card.Group itemsPerRow={4}>
+                <Card.Group itemsPerRow={3}>
                     {this.state.products.map(product=>
-                        <Products />
+                        <Products product={product} />
                     )}
                 </Card.Group> 
             </Container>
