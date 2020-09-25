@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Categories from './Categories';
 import Products from './Products';
 import Trending from './Trending';
+import { Card } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
 
 
 
@@ -26,16 +28,15 @@ class MainContainer extends Component {
     render() { 
         return (
         <div>
-            <Categories />  
-            <Trending />
-            <div className= "ui four column grid">
-                <div className="row">
+            <Container>
+                <Categories />  
+                <Trending />
+                <Card.Group itemsPerRow={4}>
                     {this.state.products.map(product=>
                         <Products />
-                        )}
-                    
-                </div>
-            </div>
+                    )}
+                </Card.Group> 
+            </Container>
         </div> 
         );
     }

@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 class Trending extends Component {
     state = {  }
     render() { 
-        return ( <div>
+        return (
+         <div>
             
         </div> );
     }
