@@ -8,38 +8,24 @@ import { Container } from 'semantic-ui-react'
 
 
 
-class MainContainer extends Component {
-    state = { 
-        products:[]
-     }
-
-     componentDidMount(){
-        fetch("http://localhost:3000/products")
-        .then(res=> res.json())
-        .then(products=> {
-            // console.log(products)
-            this.setState({
-            products
-        })
-    })
-
-
-     }
-    render() { 
+const MainContainer = props => {
+   
+    
         return (
         <div>
             <Container>
                 <Categories />  
                 <Trending />
-                <Card.Group itemsPerRow={3}>
-                    {this.state.products.map(product=>
-                        <Products product={product} />
+                <Card.Group itemsPerRow={4}>
+                    {props.displayProducts.map(product=>
+                        <Products product={product} key={product.id}/>
                     )}
                 </Card.Group> 
             </Container>
+            
         </div> 
         );
     }
-}
+
  
 export default MainContainer;
