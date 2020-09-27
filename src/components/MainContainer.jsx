@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Categories from './Categories';
 import Products from './Products';
 import Trending from './Trending';
@@ -17,10 +17,11 @@ const MainContainer = props => {
                 <Categories />  
                 <Trending />
                 <Card.Group itemsPerRow={4}>
+                
                     {props.displayProducts.map(product=>
                         <Products product={product} key={product.id}/>
                     )}
-                </Card.Group> 
+                 </Card.Group>  
             </Container>
             
         </div> 
