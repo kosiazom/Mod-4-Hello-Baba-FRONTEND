@@ -6,32 +6,20 @@ import Trending from './Trending';
 
 
 
-class MainContainer extends Component {
-    state = { 
-        products:[]
-     }
+const MainContainer = props => {
+   
+     
+   
 
-     componentDidMount(){
-        fetch("http://localhost:3000/products")
-        .then(res=> res.json())
-        .then(products=> {
-            // console.log(products)
-            this.setState({
-            products
-        })
-    })
-
-
-     }
-    render() { 
+   
         return (
         <div>
             <Categories />  
             <Trending />
             <div className= "ui four column grid">
                 <div className="row">
-                    {this.state.products.map(product=>
-                        <Products />
+                    {props.products.map(product=>
+                        <Products key={product.id}/>
                         )}
                     
                 </div>
@@ -39,6 +27,6 @@ class MainContainer extends Component {
         </div> 
         );
     }
-}
+
  
 export default MainContainer;
