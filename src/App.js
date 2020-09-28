@@ -37,8 +37,7 @@ class App extends React.Component {
       this.setState({
         displayProducts:newDisplayProducts
     })
-    // }
-    
+
 }
 render() {
   return (
@@ -51,7 +50,10 @@ render() {
       <br />
       <br />
       <br />
-      <MainContainer displayProducts={this.state.displayProducts}/>
+      <MainContainer
+         products={this.state.products}
+         displayProducts={this.state.displayProducts}
+      />
     </div>
   );
 }
