@@ -4,6 +4,8 @@ import NavBar from './components/NavBar';
 import MainContainer from './components/MainContainer';
 import Search from './components/Search';
 import 'semantic-ui-css/semantic.min.css'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Login from './components/Login'
 
 const product_url = "http://localhost:3000/products"
 
@@ -42,9 +44,13 @@ class App extends React.Component {
 }
 render() {
   return (
-    
+    <BrowserRouter>
     <div className="App">
       <NavBar color="blue" icon="cart" text="HelloBaba"/>
+   
+      <Route path="/login" component={Login} />
+    
+      
       <Search handleSearch={this.handleSearch} />
       <br />
       <br />
@@ -52,7 +58,9 @@ render() {
       <br />
       <br />
       <MainContainer displayProducts={this.state.displayProducts}/>
+
     </div>
+    </BrowserRouter>
   );
 }
   
