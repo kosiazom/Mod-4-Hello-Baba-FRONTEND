@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+const loginUrl = "http://localhost:3000/login"
+
 class Login extends Component {
     
 
@@ -12,6 +14,19 @@ class Login extends Component {
 
     loginHandle = (e) => {
         e.preventDefault()
+
+        fetch(loginUrl, {
+            method: 'POST', 
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password
+            })
+        })
+        .then(res => res.json() )
+        .then(console.log )
     }
 
 
@@ -22,7 +37,7 @@ render() {
                 <form onSubmit={(e) => this.loginHandle(e)}>
                 
                 <label>Username</label>
-                <input onChange={(e) => this.handleFormChange(e)} name="username" type="text"/>
+                <input onChange={(e) => this.handleFormChange(e)} name="username" type="text" />
                 
                 <label>Password</label>
                 <input onChange={(e) => this.handleFormChange(e)} name="password" type="password" />

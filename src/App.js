@@ -6,9 +6,9 @@ import Search from './components/Search';
 import 'semantic-ui-css/semantic.min.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 
 const product_url = "http://localhost:3000/products"
-
 
 
 class App extends React.Component {
@@ -24,7 +24,8 @@ class App extends React.Component {
   .then(products=> {
       // console.log(products)
       this.setState({
-      products, displayProducts: products
+      products: products,
+      displayProducts: products
   })
 })
  }
@@ -47,9 +48,14 @@ render() {
     <BrowserRouter>
     <div className="App">
       <NavBar color="blue" icon="cart" text="HelloBaba"/>
-   
+
+      <Switch>
+
       <Route path="/login" component={Login} />
-    
+
+      <Route path="/signup" component={SignUp} />
+
+      </Switch>
       
       <Search handleSearch={this.handleSearch} />
       <br />
@@ -58,7 +64,9 @@ render() {
       <br />
       <br />
       <MainContainer displayProducts={this.state.displayProducts}/>
-
+     
+      
+    
     </div>
     </BrowserRouter>
   );
