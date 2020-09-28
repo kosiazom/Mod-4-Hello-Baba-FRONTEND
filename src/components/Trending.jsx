@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Trending.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import "semantic-ui-css/semantic.min.css";
@@ -9,8 +9,8 @@ import "semantic-ui-css/semantic.min.css";
 const Trending = (props) => 
 {
     
-    const trendingProducts = props.trendingProducts
-    const trendingDivs = trendingProducts.map(trendingProduct => <img src={trendingProduct.product_img} style={{height: "400px", width: "300px"}} />)
+    const {trendingProducts} = props.trendingProducts
+const trendingDivs = props.trendingProducts.map(trendingProduct => <img src={trendingProduct.product_img} style={{height: "400px", width: "300px"}} />)
     
 
 
@@ -21,18 +21,23 @@ const Trending = (props) =>
 
 
 return (
-    
     <div>
-                <Carousel>
-
-                {trendingDivs}
-                
-
-                </Carousel>
-
-               
+         <div  class="ui large  yellow label">
+        Trending Products
+        </div>
             
-            </div>
+                    <Carousel  width = "500px" showThumbs={false} infiniteLoop={true}>
+
+                    {trendingDivs}
+                    
+
+                    </Carousel>
+             
+       
+
+    </div>          
+            
+           
         ) 
     }
         
