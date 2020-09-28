@@ -15,7 +15,37 @@ const MainContainer = props => {
         <div>
             <Container>
                 <Categories />  
-                <Trending trending={props.products}/>
+                <Trending trendingProducts={props.trendingProducts}/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <Card.Group itemsPerRow={4}>
                 
                     {props.displayProducts.map(product=>

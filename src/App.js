@@ -11,31 +11,50 @@ const product_url = "http://localhost:3000/products"
 
 class App extends React.Component {
 
-  state = { 
+state = 
+  { 
     products:[],
-    displayProducts:  []
- }
+    displayProducts: [],
+    trendingProducts: []
+  }
 
- componentDidMount(){
-  fetch(product_url)
-  .then(res=> res.json())
-  .then(products=> {
-      // console.log(products)
-      this.setState({
-      products, displayProducts: products
-  })
-})
- }
+componentDidMount()
+  {
+      fetch(product_url)
+      .then(res=> res.json())
+      .then(products=> 
+        {
+          this.setState
+          ({
+          products, 
+          displayProducts: products, 
+          })
+
+          let newTrendingProducts = this.state.products.filter(product => 
+            {
+              return product.name.toLowerCase().includes("costume")
+            })
+          this.setState(
+          {
+            trendingProducts:newTrendingProducts
+          })
+        })
+        
+  }
 
 
-  handleSearch=(e)=> {
-    let input = e.target.value.toLowerCase()
-    let newDisplayProducts = this.state.products.filter(product => {
-        return product.name.toLowerCase().includes(input)
+
+
+handleSearch=(e)=> {
+  let input = e.target.value.toLowerCase()
+  let newDisplayProducts = this.state.products.filter(product => 
+    {
+      return product.name.toLowerCase().includes(input)
     })
-    
-      this.setState({
-        displayProducts:newDisplayProducts
+  
+  this.setState(
+    {
+      displayProducts:newDisplayProducts
     })
 
 }
@@ -51,6 +70,7 @@ render() {
       <br />
       <br />
       <MainContainer
+         trendingProducts={this.state.trendingProducts}
          products={this.state.products}
          displayProducts={this.state.displayProducts}
       />
