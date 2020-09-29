@@ -22,10 +22,8 @@ const trendingDivs = props.trendingProducts.map(trendingProduct => <img src={tre
 
 return (
     <div>
-         <div  class="ui large  yellow label">
-        Trending Products
-        </div>
-            
+         
+        {/* react-responsive-carousel */}
                     <Carousel  width = "500px" showThumbs={false} infiniteLoop={true}>
 
                     {trendingDivs}
