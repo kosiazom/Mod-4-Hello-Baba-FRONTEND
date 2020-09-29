@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import MainContainer from './components/MainContainer';
 import Search from './components/Search';
 import 'semantic-ui-css/semantic.min.css'
+import ProductDetails from './components/ProductDetails';
 
 const product_url = "http://localhost:3000/products"
 
@@ -13,7 +14,8 @@ class App extends React.Component {
 
   state = { 
     products:[],
-    displayProducts:  []
+    displayProducts:  [],
+    showPage: {}
  }
 
  componentDidMount(){
@@ -37,8 +39,13 @@ class App extends React.Component {
       this.setState({
         displayProducts:newDisplayProducts
     })
-    // }
-    
+    // } 
+}
+
+showProductDetails = (clickedProduct) => {
+ return (<div>
+   <ProductDetails />
+ </div>)
 }
 render() {
   return (
@@ -51,7 +58,8 @@ render() {
       <br />
       <br />
       <br />
-      <MainContainer displayProducts={this.state.displayProducts}/>
+      <MainContainer displayProducts={this.state.displayProducts} 
+      showProductDetails={this.showProductDetails}/>
     </div>
   );
 }

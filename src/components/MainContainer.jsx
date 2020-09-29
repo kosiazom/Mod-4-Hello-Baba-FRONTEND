@@ -18,7 +18,8 @@ const MainContainer = props => {
                 <Trending />
                 <Card.Group itemsPerRow={4}>
                     {props.displayProducts.map(product=>
-                        <Products product={product} key={product.id}/>
+                        <Products product={product} key={product.id} 
+                        showProductDetails={props.showProductDetails}/>
                     )}
                 </Card.Group> 
             </Container>

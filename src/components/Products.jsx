@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Card } from 'semantic-ui-react';
+import ProductDetails from './ProductDetails'
+
+
+
 const Products = (props) => 
 {
     const{name,price,product_img} = props.product
         return ( 
         <div>
-            <Card >
+            <Card onClick={(e) => {props.showProductDetails(props.product)}} >
                 <div className="image">
                     <img src={product_img}/>
                 </div>
