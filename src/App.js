@@ -17,8 +17,8 @@ class App extends React.Component {
 
   state = { 
     products:[],
-    displayProducts:  [],
-    showPage: {}
+    displayProducts: [],
+    cardClicked: null
  }
 
  componentDidMount(){
@@ -44,6 +44,12 @@ class App extends React.Component {
     })  
 }
 
+handleClickedCard = (clickedCard) => {
+  this.setState({
+    cardClicked: clickedCard
+  })
+}
+
 //myOrders = (e) => {
  //debugger
 
@@ -63,7 +69,7 @@ render() {
       <NavBar color="blue" icon="cart" text="HelloBaba"/>
         <button onClick={(e) => this.myOrders(e)}>My Orders</button>
       <Switch>
-
+      {/* <Route /> */}
       <Route path="/login" component={Login} />
 
       <Route path="/signup" component={SignUp} />
@@ -76,8 +82,7 @@ render() {
       <br />
       <br />
       <br />
-      <MainContainer displayProducts={this.state.displayProducts} 
-      showProductDetails={this.showProductDetails}/>
+      <MainContainer displayProducts={this.state.displayProducts} cardClicked={this.state.cardClicked}  handleClickedCard={this.handleClickedCard}/>
     </div>
     </BrowserRouter>
   );
