@@ -1,49 +1,55 @@
-import React, { Component } from 'react';;
+
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+import { Header, Segment } from 'semantic-ui-react'
 
 
-class NavBar extends Component {
+const  NavBar = (props) => {
+
+    // const logout = () => {
+    //     localStorage.clear pass to the logout on click
+    // }
+    
    
-    render() { 
+    
         // const { activeItem } = this.state
         return ( 
-        <div>
-             <div className={`ui inverted ${this.props.color} menu`} >
+        <Segment>
+             <div className={`ui inverted ${props.color} menu`} >
                 <a className='item'>
-                    <h2 className="ui header">
-                        <i className={`${this.props.icon} icon`}></i>
-                        <div className="content">
-                            {this.props.text}
-                        </div>
-                    </h2>
+                <h2 className="ui header">
+                <i className={`${props.icon} icon`} />
+                <Header as='h2'>{props.text}</Header>
+                </h2>
                 </a>
+                {/* <div className="item" floated='right'>
+                    <h2 className="ui header" > */}
+                            
+                    
+                <Header as={ Link } to="/signup" textAlign='center'>
+                    SignUp
+                </Header>
+                  
+                <Header as= { Link } to="/orders" textAlign='center'>
+                    My Orders
+                </Header><br/>   
+                    {/* </h2>
+                    </div> */}
+                    {/* <div className="item">
+                        <h2 className="ui header"> */}
+                            {/* <div className="content "> */}
+                <Header as={ Link } to="/login" textAlign='justified'>
+                    Login
+                </Header>
+                            {/* </div> */}
+                        {/* </h2>
+                    </div> */}
             </div> 
-        </div>
+        </Segment>
 
-    //     <Menu>
-    //     <Menu.Item
-        
-    //       name='editorials'
-          
-    //     >
-    //       Editorials
-    //     </Menu.Item>
-
-    //     <Menu.Item
-    //       name='reviews'
-          
-    //     >
-    //       Reviews
-    //     </Menu.Item>
-
-    //     <Menu.Item
-    //       name='upcomingEvents'
-          
-    //     >
-    //       Upcoming Events
-    //     </Menu.Item>
-    //   </Menu>
+    
          );
-    }
+    
 }
  
 export default NavBar;
