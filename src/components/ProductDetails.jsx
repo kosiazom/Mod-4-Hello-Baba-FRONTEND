@@ -8,10 +8,19 @@ class ProductDetails extends Component {
 
     render() { 
        
-        return ( <div>
+        return ( 
+        <div>
             
           
+                <div onClick={()=> this.props.handleReturnClick() }class="ui animated button" tabindex="0">
+                <div class="visible content">Back to Products</div>
+                <div class="hidden content">
+                    <i class="left arrow icon"></i>
+                </div>
+                </div>
+
                 <div className="ui segment">
+                   
                    <img class="ui centered large image" src= {this.props.product.product_img} />
                 </div>
                 <div className='content'>
@@ -24,8 +33,9 @@ class ProductDetails extends Component {
                     <div className="description">
                             <p>{this.props.product.description}</p>
                     </div>
-                    <Button>Back to Products</Button>
-                </div>
+                    
+                
+            </div>
         
         <p>Reviews:{this.props.product.reviews}</p>
 

@@ -1,14 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import "semantic-ui-css/semantic.min.css";
 
 
-class Trending extends Component {
-    state = {  }
-    render() { 
-        return (
-         <div>
+
+const Trending = (props) => 
+{
+    
+    const {trendingProducts} = props.trendingProducts
+const trendingDivs = props.trendingProducts.map(trendingProduct => <img src={trendingProduct.product_img} style={{ height: "400px", width: "300px"}} />)
+    
+
+
+                
+        
+    
+
+
+
+return (
+    <div>
+         
+        {/* react-responsive-carousel */}
+                    <Carousel  width = "500px" showThumbs={false} infiniteLoop={true}>
+
+                    {trendingDivs}
+                    
+
+                    </Carousel>
+             
+       
+
+    </div>          
             
-        </div> );
+           
+        ) 
     }
-}
+        
+
  
 export default Trending;

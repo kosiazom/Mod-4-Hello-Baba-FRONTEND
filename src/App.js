@@ -1,5 +1,10 @@
 import React from 'react';
 import './App.css';
+
+import { Card } from 'semantic-ui-react'
+import Categories from './components/Categories';
+import Products from './components/Products';
+import Trending from './components/Trending';
 import NavBar from './components/NavBar';
 import MainContainer from './components/MainContainer';
 import Search from './components/Search';
@@ -15,40 +20,117 @@ const order_url = "http://localhost:3000/orders"
 
 class App extends React.Component {
 
-  state = { 
+state = 
+  { 
     products:[],
     displayProducts: [],
-    cardClicked: null
+    cardClicked: null,
+    trendingProducts: []
  }
+ 
 
- componentDidMount(){
+componentDidMount()
+{
   fetch(product_url)
   .then(res=> res.json())
-  .then(products=> {
-      // console.log(products)
-      this.setState({
-      products: products,
-      displayProducts: products
-  })
-})
- }
+  .then(products=> 
+    {
+      this.setState
+      ({
+        products, 
+        displayProducts: products, 
+      })
+      
+      let newTrendingProducts = this.state.products.filter(product => 
+        {
+          return product.name.toLowerCase().includes("costume")
+        })
+        this.setState(
+          {
+            trendingProducts:newTrendingProducts
+          })
+        })
+        
+      }
 
-  handleSearch = (e) => {
+
+      mainContainerCondition = () => {
+
+ //clicked card is coming undefined
+        if (this.state.cardClicked) {return <div> <ProductDetails product={this.state.cardClicked} handleReturnClick={this.handleReturnClick}/> </div>}
+        else {
+          return (
+          <div>
+            <Categories />
+
+            <Trending trendingProducts={this.state.trendingProducts}/>
+          
+            <Card.Group itemsPerRow={4}>
+          
+              {this.state.displayProducts.map(product=>
+                  <Products product={product} key={product.id} handleClickedCard={this.handleClickedCard}/>
+              )}
+            </Card.Group> 
+          </div>
+
+
+
+          )
+
+        }
+       
+
+//         {props.cardClicked ? <ProductDetails product={props.cardClicked} /> :
+                
+                    
+//         <Categories />
+
+//         <Trending trendingProducts={props.trendingProducts}/>
+        
+//         <Card.Group itemsPerRow={4}>
+        
+//             {props.displayProducts.map(product=>
+//                 <Products product={product} key={product.id} handleClickedCard={props.handleClickedCard}/>
+//             )}
+//         </Card.Group> 
+// )
+            
+//          }
+
+
+      }
+      
+      handleSearch = (e) => {
     let input = e.target.value.toLowerCase()
     let newDisplayProducts = this.state.products.filter(product => {
         return product.name.toLowerCase().includes(input)
     })
+
     
       this.setState({
         displayProducts:newDisplayProducts
     })  
 }
 
-handleClickedCard = (clickedCard) => {
+  handleClickedCard = (clickedCard) => {
+    
+    this.setState({
+      cardClicked: clickedCard
+    })
+    
+      
+    }
+
+handleReturnClick = (e) => {
+
+
   this.setState({
-    cardClicked: clickedCard
+    cardClicked: null
   })
 }
+
+
+
 
 //myOrders = (e) => {
  //debugger
@@ -82,7 +164,15 @@ render() {
       <br />
       <br />
       <br />
-      <MainContainer displayProducts={this.state.displayProducts} cardClicked={this.state.cardClicked}  handleClickedCard={this.handleClickedCard}/>
+      
+      <MainContainer
+      mainContainerCondition={this.mainContainerCondition}
+      cardClicked={this.state.cardClicked}  
+      handleClickedCard={this.handleClickedCard}
+         trendingProducts={this.state.trendingProducts}
+         products={this.state.products}
+         displayProducts={this.state.displayProducts}
+      />
     </div>
     </BrowserRouter>
   );
