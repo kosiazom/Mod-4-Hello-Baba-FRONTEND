@@ -26,7 +26,9 @@ class Login extends Component {
             })
         })
         .then(res => res.json() )
-        .then(console.log )
+        .then( custInfo => {
+            localStorage.token = custInfo.token
+        })
     }
 
 
