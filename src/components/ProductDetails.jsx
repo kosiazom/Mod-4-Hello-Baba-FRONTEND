@@ -3,10 +3,29 @@ import { Button } from 'semantic-ui-react';
 import "semantic-ui-css/semantic.min.css"
 
 class ProductDetails extends Component {
-    // state = {  }
-    
+    state ={
+        customers: []
+    }
+    componentDidMount(){
+        fetch("http://localhost:3000/customers")
+        .then(res => res.json())
+        .then(customers => this.setState({
+            customers
+        }))
+    }
 
+        customerExists = (customer) => {
+            if (this.state.customers){
+                return customer.username}
+         }
     render() { 
+        
+        
+            
+      
+            
+        
+
        
         return ( 
         <div>
@@ -34,10 +53,18 @@ class ProductDetails extends Component {
                             <p>{this.props.product.description}</p>
                     </div>
                     
+        <p>Reviews:{this.props.product.reviews.map(review => {
+            let description = review.description
+            let customer =  this.state.customers.find(customer => customer.id === review.customer_id)
+            console.log(customer)
+    //   let username = customer.username
+        return <div class = "ui segment ">{description}</div>
+            
+
+        })}</p>
                 
             </div>
         
-        <p>Reviews:{this.props.product.reviews}</p>
 
         </div> );
     }

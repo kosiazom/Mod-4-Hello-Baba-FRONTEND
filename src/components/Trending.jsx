@@ -8,8 +8,8 @@ import "semantic-ui-css/semantic.min.css";
 const Trending = (props) => 
 {
     
-    const {trendingProducts} = props.trendingProducts
-const trendingDivs = props.trendingProducts.map(trendingProduct => <img src={trendingProduct.product_img} style={{ height: "400px", width: "300px"}} />)
+    const {trendingProduct} = props.trendingProducts
+const trendingDivs = props.trendingProducts.map(trendingProduct => <img src={trendingProduct.product_img} style={{  height: "400px", width: "300px"}} />)
     
 
 
