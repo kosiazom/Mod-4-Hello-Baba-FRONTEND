@@ -58,7 +58,7 @@ class ProductDetails extends Component {
             let customer =  this.state.customers.find(customer => customer.id === review.customer_id)
             console.log(customer)
     //   let username = customer.username
-        return <div class = "ui segment ">{description}</div>
+        return <div class = "ui segment "><div>Username:  </div>Review:{description}</div>
             
 
         })}</p>
