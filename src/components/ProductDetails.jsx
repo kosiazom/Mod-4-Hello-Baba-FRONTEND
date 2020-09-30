@@ -49,9 +49,10 @@ class ProductDetails extends Component {
         
         <p>Reviews:{this.props.product.reviews.map(review => {
             let description = review.description
-            let customer =  this.state.customers.find(customer => customer.id === review.customer_id)
-            console.log(customer)
-            return <div class = "ui segment "><div>Username:  </div>Review:{description}</div>
+           let customer = this.state.customers.find(customer => customer.id === review.customer_id)
+            let customerObj = {...customer}
+          
+            return <div class = "ui segment "><div>Username: {customerObj.username}   </div>Review: {description}</div>
             })}
              </p>
 
