@@ -15,7 +15,7 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 
 const product_url = "http://localhost:3000/products"
-const order_url = "http://localhost:3000/orders"
+// const order_url = "http://localhost:3000/orders"
 
 
 class App extends React.Component {
@@ -40,7 +40,6 @@ componentDidMount()
         products, 
         displayProducts: products, 
       })
-      
       let newTrendingProducts = this.state.products.filter(product => 
         {
           return product.name.toLowerCase().includes("costume")
@@ -66,47 +65,20 @@ componentDidMount()
             <Trending trendingProducts={this.state.trendingProducts}/>
           
             <Card.Group itemsPerRow={4}>
-          
-              {this.state.displayProducts.map(product=>
+           {this.state.displayProducts.map(product=>
                   <Products product={product} key={product.id} handleClickedCard={this.handleClickedCard}/>
               )}
             </Card.Group> 
           </div>
-
-
-
-          )
-
-        }
-       
-
-//         {props.cardClicked ? <ProductDetails product={props.cardClicked} /> :
-                
-                    
-//         <Categories />
-
-//         <Trending trendingProducts={props.trendingProducts}/>
-        
-//         <Card.Group itemsPerRow={4}>
-        
-//             {props.displayProducts.map(product=>
-//                 <Products product={product} key={product.id} handleClickedCard={props.handleClickedCard}/>
-//             )}
-//         </Card.Group> 
-// )
-            
-//          }
-
-
-      }
+)
+ }
+       }
       
-      handleSearch = (e) => {
+    handleSearch = (e) => {
     let input = e.target.value.toLowerCase()
     let newDisplayProducts = this.state.products.filter(product => {
         return product.name.toLowerCase().includes(input)
     })
-
-    
       this.setState({
         displayProducts:newDisplayProducts
     })  
@@ -116,45 +88,27 @@ componentDidMount()
     
     this.setState({
       cardClicked: clickedCard
-    })
-    
-      
+    })   
     }
 
 handleReturnClick = (e) => {
-
-
   this.setState({
     cardClicked: null
   })
 }
 
 
-
-
-//myOrders = (e) => {
- //debugger
-
-//  fetch(order_url, {
-//    method: "GET", 
-//    headers: {
-//      Authorization: `Bearer ${localStorage.token}`
-//    }
-//  })
-//  .then( res => res.json)
-//  .then( console.log )
-//}
 render() {
   return (
     <BrowserRouter>
     <div className="App">
       <NavBar color="blue" icon="cart" text="HelloBaba"/>
-        <button onClick={(e) => this.myOrders(e)}>My Orders</button>
+        
       <Switch>
       {/* <Route /> */}
-      <Route path="/login" component={Login} />
+      <Route  path="/login" component={Login} />
 
-      <Route path="/signup" component={SignUp} />
+      <Route  path="/signup" component={SignUp} />
 
       </Switch>
       

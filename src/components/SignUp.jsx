@@ -10,6 +10,9 @@ class SignUp extends Component {
         })
     }
 
+    goHome = () => {
+        this.props.history.push("/")
+     }
 
    register = (e) => {
        e.preventDefault()
@@ -30,8 +33,9 @@ class SignUp extends Component {
     render() { 
         return ( 
         <div>
-            <h2>Signup</h2>
-            <form onSubmit={(e) => this.register(e)}>
+            <h2>Please Register</h2>
+            <form onSubmit={(e) => {this.register(e) 
+                                    this.goHome()}}>
             <label>UserName: </label>
             <input onChange={(e) => this.handleChange(e)} name="username" type="text"/>
             <label>Password: </label>

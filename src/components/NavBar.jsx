@@ -14,7 +14,7 @@ const  NavBar = (props) => {
     
         // const { activeItem } = this.state
         return ( 
-        <Segment>
+        <div>
              <div className={`ui inverted ${props.color} menu`} >
                 <a className='item'>
                 <h2 className="ui header">
@@ -22,30 +22,23 @@ const  NavBar = (props) => {
                 <Header as='h2'>{props.text}</Header>
                 </h2>
                 </a>
-                {/* <div className="item" floated='right'>
-                    <h2 className="ui header" > */}
-                            
+                <div className="item" >
+                    <h2 className="ui header" floated='right' > 
+                       <div className="content" >
+                            <Link to="/signup" style={{color: "black"}}>Register</Link>
+                       </div>     
+                    </h2>
+                </div> 
+                <div className="item" >
+                    <h2 className="ui header" floated='right' > 
+                       <div className="content" >
+                            <Link to="/login" style={{color: "black"}}>Login</Link>
+                       </div>     
+                    </h2>
+                </div> 
                     
-                <Header as={ Link } to="/signup" textAlign='center'>
-                    SignUp
-                </Header>
-                  
-                <Header as= { Link } to="/orders" textAlign='center'>
-                    My Orders
-                </Header><br/>   
-                    {/* </h2>
-                    </div> */}
-                    {/* <div className="item">
-                        <h2 className="ui header"> */}
-                            {/* <div className="content "> */}
-                <Header as={ Link } to="/login" textAlign='justified'>
-                    Login
-                </Header>
-                            {/* </div> */}
-                        {/* </h2>
-                    </div> */}
             </div> 
-        </Segment>
+        </div>
 
     
          );
