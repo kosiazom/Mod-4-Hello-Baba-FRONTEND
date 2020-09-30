@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import ItemsCarousel from 'react-items-carousel';
 import range from 'lodash/range';
