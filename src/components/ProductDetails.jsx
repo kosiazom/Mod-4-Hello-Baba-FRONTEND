@@ -4,6 +4,16 @@ import "semantic-ui-css/semantic.min.css"
 
 class ProductDetails extends Component {
     // state = {  }
+    state ={
+        customers: []
+    }
+    componentDidMount(){
+        fetch("http://localhost:3000/customers")
+        .then(res => res.json())
+        .then(customers => this.setState({
+            customers
+        }))
+    }
     
 
     render() { 
@@ -37,7 +47,14 @@ class ProductDetails extends Component {
                 
             </div>
         
-        <p>Reviews:{this.props.product.reviews}</p>
+        <p>Reviews:{this.props.product.reviews.map(review => {
+            let description = review.description
+           let customer = this.state.customers.find(customer => customer.id === review.customer_id)
+            let customerObj = {...customer}
+          
+            return <div class = "ui segment "><div>Username: {customerObj.username}   </div>Review: {description}</div>
+            })}
+             </p>
 
         </div> );
     }
