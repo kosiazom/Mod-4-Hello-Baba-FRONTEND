@@ -6,6 +6,11 @@ class ProductDetails extends Component {
     // state = {  }
     state ={
         customers: [],
+        products: {
+            reviews: {
+
+            }
+        }
         
     }
     componentDidMount(){
@@ -46,7 +51,11 @@ class ProductDetails extends Component {
         }
         fetch("http://localhost:3000/reviews", requestObj)
         .then( res => res.json ())
-        .then( console.log )
+        .then(
+            this.setState({
+                products: this.state.customers.product
+            })
+        )
     }
     
     deleteReview = (review) => {
@@ -57,13 +66,18 @@ class ProductDetails extends Component {
                 Authorization: `Bearer ${localStorage.token}`
             }
         }
+        let kosi = this.state.customers.filter(customer => customer.username === localStorage.username)
+        console.log(kosi)
+        // kosi.products.filter(product => console.log(product.reviews))
 
         fetch(`http://localhost:3000/reviews/${review.id}`, deleteReq)
-        .then( this.setState({
-            customers: this.state.customers
-        }) )
-        
-        
+        .then( 
+            
+        //     this.setState({
+        //     customers:  
+        // }) )
+        )
+    
     }
 
 
