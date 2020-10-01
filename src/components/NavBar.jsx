@@ -1,18 +1,19 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Header, Segment } from 'semantic-ui-react'
+import { Header, Button} from 'semantic-ui-react'
+
 
 
 const  NavBar = (props) => {
 
-    // const logout = () => {
-    //     localStorage.clear pass to the logout on click
-    // }
+    const logout = () => {
+        localStorage.clear()
+    }
     
    
     
-        // const { activeItem } = this.state
+        
         return ( 
         <div>
              <div className={`ui inverted ${props.color} menu`} >
@@ -30,13 +31,13 @@ const  NavBar = (props) => {
                     </h2>
                 </div> 
                 <div className="item" >
-                    <h2 className="ui header" floated='right' > 
+                    <h2 className="ui header" style={{float: "right"}}> 
                        <div className="content" >
                             <Link to="/login" style={{color: "black"}}>Login</Link>
                        </div>     
                     </h2>
                 </div> 
-                    
+                <Button className="ui blue button" style={{color: "black"}} onClick={logout}>Logout</Button>
             </div> 
         </div>
 

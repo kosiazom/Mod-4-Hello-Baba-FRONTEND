@@ -72,8 +72,10 @@ componentDidMount()
           </div>
 )
  }
-       }
-      
+    }
+  
+
+    
     handleSearch = (e) => {
     let input = e.target.value.toLowerCase()
     let newDisplayProducts = this.state.products.filter(product => {

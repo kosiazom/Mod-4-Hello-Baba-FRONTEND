@@ -30,6 +30,8 @@ class SignUp extends Component {
        .then( res => res.json() )
        .then( console.log )
    }
+
+   
     render() { 
         return ( 
         <div>

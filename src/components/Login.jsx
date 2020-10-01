@@ -4,7 +4,8 @@ const loginUrl = "http://localhost:3000/login"
 
 class Login extends Component {
     state = {
-    loggedin: false
+    loggedin: false,
+    localStorage: []
     }
 
     handleFormChange = (e) => {
@@ -24,7 +25,7 @@ class Login extends Component {
         fetch(loginUrl, {
             method: 'POST', 
             headers: {
-                "Content-Type": 'application/json'
+                "Content-Type": 'application/json',
             },
             body: JSON.stringify({
                 username: this.state.username,
@@ -34,10 +35,15 @@ class Login extends Component {
         .then(res => res.json() )
         .then( custInfo => {
             console.log(custInfo)
-            if(custInfo.token) {
+            if(custInfo) {
                 localStorage.token = custInfo.token
-                // localStorage.username = custInfo.customer.username
-                // localStorage.id = custInfo.customer.id
+                localStorage.username = custInfo.username
+                localStorage.id = custInfo.id
+                
+            //     this.setState({localStorage: custInfo})
+            //    console.log(this.state.localStorage)
+                
+                
             }
             else {
                 alert("Invalid Username and Password!!!")

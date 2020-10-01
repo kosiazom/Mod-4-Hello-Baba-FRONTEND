@@ -79,14 +79,14 @@ export default class Trending extends React.Component {
           activeItemIndex={this.state.activeItemIndex}
           activePosition='center'
           requestToChangeActive={this.onChange}
-          rightChevron={<div class="ui animated button" tabindex="0">
+          rightChevron={<div class="ui animated button" tabIndex="0">
           <div class="visible content">Next</div>
           <div class="hidden content">
             <i class="right arrow icon"></i>
           </div>
         </div>}
         
-          leftChevron={<div class="ui animated button" tabindex="0">
+          leftChevron={<div class="ui animated button" tabIndex="0">
           <div class="visible content">Previous</div>
           <div class="hidden content">
             <i class="left arrow icon"></i>

@@ -5,7 +5,8 @@ import "semantic-ui-css/semantic.min.css"
 class ProductDetails extends Component {
     // state = {  }
     state ={
-        customers: []
+        customers: [],
+        
     }
     componentDidMount(){
         fetch("http://localhost:3000/customers")
@@ -14,7 +15,57 @@ class ProductDetails extends Component {
             customers
         }))
     }
+
+    // getReviews = () => {
+
+    //     fetch("http://localhost:3000/reviews", {
+    //         method: "GET", 
+    //         headers: { 
+    //             // "Content-Type": "application/json",
+    //             Authorization: `Bearer ${localStorage.token}`
+    //         }
+    //     })
+    //     .then( res => res.json() )
+    //     .then( console.log )
+    // }
+
+    handleSubmitReview = (e) => {
+       e.preventDefault()
+        
+        const requestObj ={
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                customer_id: localStorage.id,
+                product_id: this.props.product.id,
+                description: e.target[0].value
+            })
+        }
+        fetch("http://localhost:3000/reviews", requestObj)
+        .then( res => res.json ())
+        .then( console.log )
+    }
     
+    deleteReview = (review) => {
+       
+        const deleteReq ={
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        }
+
+        fetch(`http://localhost:3000/reviews/${review.id}`, deleteReq)
+        .then( this.setState({
+            customers: this.state.customers
+        }) )
+        
+        
+    }
+
 
     render() { 
        
@@ -45,7 +96,13 @@ class ProductDetails extends Component {
                     </div>
             </div>
             <div>
-               <form class="ui form"><div class="field"><label>Leave A Review On This Product</label><input type="text" name="review" placeholder="Leave A Review"/></div><button class="ui button" type="submit">Submit</button></form>
+               <form class="ui form" onSubmit={(e) => this.handleSubmitReview(e)}>
+                   <div class="field">
+                       <label>Leave A Review On This Product</label>
+                       <input type="text" name="review" placeholder="Leave A Review" />
+                       </div>
+                       <button class="ui button" type="submit" >Submit</button>
+                       </form>
           </div>
         
         <p>Reviews:{this.props.product.reviews.map(review => {
@@ -53,7 +110,12 @@ class ProductDetails extends Component {
            let customer = this.state.customers.find(customer => customer.id === review.customer_id)
             let customerObj = {...customer}
           
-            return <div class = "ui segment "><div>Username: {customerObj.username}   </div>Review: {description}</div>
+            return <div class="ui segment " >
+                <div>Username: {customerObj.username}   
+                </div>Review: {description}
+                <Button onClick={(e) => this.deleteReview(review)}>Delete</Button> 
+                </div>
+                
             })}
              </p>
 
