@@ -16,11 +16,20 @@ const  NavBar = (props) => {
         
         return ( 
         <div>
+
              <div className={`ui inverted ${props.color} menu`} >
+                 <a classname="item">
+                 <h2 className="ui header">
+                    <br/>
+                   
+                 <i className={`${props.icon} icon`} />
+                 <br></br>
+                 </h2>
+                 </a>
                 <a className='item'>
                 <h2 className="ui header">
-                <i className={`${props.icon} icon`} />
                 <Header as='h2'>{props.text}</Header>
+               
                 </h2>
                 </a>
                 <div className="item" >
@@ -37,7 +46,16 @@ const  NavBar = (props) => {
                        </div>     
                     </h2>
                 </div> 
-                <Button className="ui blue button" style={{color: "black"}} onClick={logout}>Logout</Button>
+
+                <div className="item" >
+                    <h2 className="ui header" style={{float: "right"}}> 
+                       <div className="content" >
+                            <p  style={{color: "black"}} onClick={logout}>Logout</p>
+                       </div>     
+                    </h2>
+                </div> 
+
+              
             </div> 
         </div>
 

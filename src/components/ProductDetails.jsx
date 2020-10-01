@@ -21,18 +21,7 @@ class ProductDetails extends Component {
         }))
     }
 
-    // getReviews = () => {
-
-    //     fetch("http://localhost:3000/reviews", {
-    //         method: "GET", 
-    //         headers: { 
-    //             // "Content-Type": "application/json",
-    //             Authorization: `Bearer ${localStorage.token}`
-    //         }
-    //     })
-    //     .then( res => res.json() )
-    //     .then( console.log )
-    // }
+  
 
     handleSubmitReview = (e) => {
        e.preventDefault()

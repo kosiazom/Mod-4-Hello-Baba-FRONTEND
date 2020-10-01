@@ -65,7 +65,7 @@ export default class Trending extends React.Component {
   onChange = value => this.setState({ activeItemIndex: value });
 
   render() {
-  const trendingDivs = this.props.trendingProducts.map(trendingProduct => {return <div > <br/> {trendingProduct.name} <Image style ={{height: 400, width: 300}}src= {trendingProduct.product_img} /></div>})
+  const trendingDivs = this.props.trendingProducts.map(trendingProduct => {return <div > <br/> {trendingProduct.name} <Image onClick={ ()=> this.props.handleCarouselClick()} style ={{height: 400, width: 300}}src= {trendingProduct.product_img} /></div>})
     return (
       <Wrapper >
            <p class="ui  large orange ribbon label">
@@ -73,6 +73,7 @@ export default class Trending extends React.Component {
     </p>
     <div class= "ui black tag label">$10.31</div>
         <ItemsCarousel
+          
       
           gutter={12}
           numberOfCards={noOfCards}
