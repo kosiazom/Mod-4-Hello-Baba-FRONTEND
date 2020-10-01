@@ -13,6 +13,7 @@ import ProductDetails from './components/ProductDetails';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import TrendingProducts from './components/TrendingProducts'
 
 const product_url = "http://localhost:3000/products"
 // const order_url = "http://localhost:3000/orders"
@@ -25,7 +26,8 @@ state =
     products:[],
     displayProducts: [],
     cardClicked: null,
-    trendingProducts: []
+    trendingProducts: [],
+    carouselClicked:false
  }
  
 
@@ -56,13 +58,33 @@ componentDidMount()
       mainContainerCondition = () => {
 
  //clicked card is coming undefined
-        if (this.state.cardClicked) {return <div> <ProductDetails product={this.state.cardClicked} handleReturnClick={this.handleReturnClick}/> </div>}
+        if (this.state.cardClicked) {return( 
+          <div>
+            <ProductDetails product={this.state.cardClicked} handleReturnClick={this.handleReturnClick}/> 
+          </div>)}
+        else if (this.state.carouselClicked){return (
+        <div> 
+           <div onClick={()=> this.handleReturnClick() }class="ui animated button" tabindex="0">
+            <div class="visible content">Back to Products</div>
+            <div class="hidden content">
+                <i class="left arrow icon"></i>
+            </div>
+            </div>
+            <br/>
+            <br/>
+          <Card.Group itemsPerRow={2}>
+           {this.state.trendingProducts.map(product=>
+           
+                  <TrendingProducts product={product} key={product.id} handleClickedCard={this.handleClickedCard} handleReturnClick={this.handleReturnClick}/>
+              )}
+            </Card.Group> 
+        </div>)}
         else {
           return (
           <div>
             <Categories />
 
-            <Trending trendingProducts={this.state.trendingProducts}/>
+            <Trending trendingProducts={this.state.trendingProducts} handleCarouselClick={this.handleCarouselClick}/>
           
             <Card.Group itemsPerRow={4}>
            {this.state.displayProducts.map(product=>
@@ -93,9 +115,17 @@ componentDidMount()
     })   
     }
 
+
+    handleCarouselClick = () => {
+      this.setState ({ carouselClicked: true}) 
+    }
+
+
+
 handleReturnClick = (e) => {
   this.setState({
-    cardClicked: null
+    cardClicked: null,
+    carouselClicked:false
   })
 }
 
@@ -126,6 +156,7 @@ render() {
       cardClicked={this.state.cardClicked}  
       handleClickedCard={this.handleClickedCard}
          trendingProducts={this.state.trendingProducts}
+         carouselClicked={this.state.carouselClicked}
          products={this.state.products}
          displayProducts={this.state.displayProducts}
       />
