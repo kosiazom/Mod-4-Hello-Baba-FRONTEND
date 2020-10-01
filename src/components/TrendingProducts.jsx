@@ -7,13 +7,11 @@ const TrendingProducts = (props) =>
 {
     const{name,price,product_img} = props.product
         return ( 
-            <div>
+            
            
-            <Card onClick={(e) => props.handleClickedCard(props.product)} >
-                <div className="image">
-                    <img src={product_img}
-                   style={{height: "500px", width: "400x"}}
-                />
+            <Card  onClick={(e) => props.handleClickedCard(props.product)} >
+                <div  className="image">
+                    <img style={{height: "400px", width: "300x"}} src={product_img}  />
                 </div>
                 <div className="content">
                     <div className="name">
@@ -28,7 +26,7 @@ const TrendingProducts = (props) =>
                 
             </Card>
           
-            </div>
+           
         );
 }
  

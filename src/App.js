@@ -37,6 +37,7 @@ componentDidMount()
   .then(res=> res.json())
   .then(products=> 
     {
+      
       this.setState
       ({
         products, 
@@ -74,7 +75,6 @@ componentDidMount()
             <br/>
           <Card.Group itemsPerRow={2}>
            {this.state.trendingProducts.map(product=>
-           
                   <TrendingProducts product={product} key={product.id} handleClickedCard={this.handleClickedCard} handleReturnClick={this.handleReturnClick}/>
               )}
             </Card.Group> 
@@ -117,12 +117,14 @@ componentDidMount()
 
 
     handleCarouselClick = () => {
+      
       this.setState ({ carouselClicked: true}) 
     }
 
 
 
 handleReturnClick = (e) => {
+
   this.setState({
     cardClicked: null,
     carouselClicked:false
@@ -134,7 +136,7 @@ render() {
   return (
     <BrowserRouter>
     <div className="App">
-      <NavBar color="blue" icon="cart" text="HelloBaba"/>
+      {this.state.carouselClicked?<NavBar color= "orange" icon="cart" text="HelloBaba"/>:<NavBar color= "blue" icon="cart" text="HelloBaba"/>}
         
       <Switch>
       {/* <Route /> */}
